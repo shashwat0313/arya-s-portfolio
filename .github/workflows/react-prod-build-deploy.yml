@@ -28,13 +28,22 @@ jobs:
           node-version: 18
           cache: 'npm'
 
+      - name: Verify Lock File
+        run: |
+          if [ ! -f portfolio/package-lock.json ]; then
+            echo "package-lock.json not found! Generating one..."
+            cd portfolio
+            npm install --package-lock-only
+            cd ..
+          fi
+
       - name: Install Dependencies
-        working-directory: portfolio
         run: npm install
+        working-directory: portfolio
 
       - name: Build React App
-        working-directory: portfolio
         run: npm run build --emptyOutDir
+        working-directory: portfolio
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
