@@ -55,7 +55,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: portfolio/build  # Upload only the React build folder
+          path: portfolio-prod  # Upload only the React build folder
 
   deploy:
     environment:
